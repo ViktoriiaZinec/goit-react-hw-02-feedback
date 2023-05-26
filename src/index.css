@@ -10,6 +10,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #313236;
+  text-align: center;
+  background-color: rgb(232, 240, 246);
+}
+section {
+  padding: 50px;
 }
 
 code {
@@ -19,6 +25,16 @@ code {
 a,
 button {
   display: block;
-  background: none;
+
   border: none;
+}
+h1,
+h2 {
+  font-weight: 500;
+}
+h1 {
+  font-size: 40px;
+}
+ul {
+  list-style: none;
 }

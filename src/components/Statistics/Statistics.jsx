@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import css from './Statistics.module.css';
 
 export function Statistics({ counterGood, counterNeutral, counterBad }) {
   const countTotalFeedback = (counterGood, counterNeutral, counterBad) =>
@@ -9,23 +10,32 @@ export function Statistics({ counterGood, counterNeutral, counterBad }) {
     }
     return 0;
   };
-
-  return (
-    <ul>
-      <li>Good: {counterGood}</li>
-      <li>Neutral: {counterNeutral}</li>
-      <li>Bad: {counterBad}</li>
-      <li>
-        Total: {countTotalFeedback(counterGood, counterNeutral, counterBad)}
-      </li>
-      <li>
-        Positive:
-        {countPositiveFeedbackPercentage(
-          counterGood,
-          countTotalFeedback(counterGood, counterNeutral, counterBad)
-        )}
-        %
-      </li>
-    </ul>
-  );
+  if (countTotalFeedback(counterGood, counterNeutral, counterBad) > 0) {
+    return (
+      <ul className={css.list_style}>
+        <li>Good: {counterGood}</li>
+        <li>Neutral: {counterNeutral}</li>
+        <li>Bad: {counterBad}</li>
+        <li>
+          Total: {countTotalFeedback(counterGood, counterNeutral, counterBad)}
+        </li>
+        <li>
+          Positive:{' '}
+          {countPositiveFeedbackPercentage(
+            counterGood,
+            countTotalFeedback(counterGood, counterNeutral, counterBad)
+          )}
+          %
+        </li>
+      </ul>
+    );
+  } else {
+    return '';
+  }
 }
+
+Statistics.propType = {
+  counterGood: PropTypes.number.isRequired,
+  counterNeutral: PropTypes.number.isRequired,
+  counterBad: PropTypes.number.isRequired,
+};

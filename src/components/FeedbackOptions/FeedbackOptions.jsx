@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Statistics } from '../Statistics/Statistics';
+import css from './Feedback.module.css';
 
 export class FeedbackOptions extends Component {
   static propTypes = {
@@ -38,21 +39,43 @@ export class FeedbackOptions extends Component {
     const { counterNeutral } = this.state;
     const { counterBad } = this.state;
     return (
-      <div>
-        {counterGood}
-        <button name="good" onClick={this.handleUpdate}>
-          Good
-        </button>
-
-        {counterNeutral}
-        <button name="neutral" onClick={this.handleUpdate}>
-          Neutral
-        </button>
-
-        {counterBad}
-        <button name="bad" onClick={this.handleUpdate}>
-          Bad
-        </button>
+      <div className={css.main_container}>
+        <div className={css.btn_container}>
+          <div className={css.btn_vertical}>
+            <h3 className={css.number}>{counterGood}</h3>
+            <button
+              type="button"
+              name="good"
+              className={css.good_btn}
+              onClick={this.handleUpdate}
+            >
+              Good
+            </button>
+          </div>
+          <div className={css.btn_vertical}>
+            <h3 className={css.number}>{counterNeutral}</h3>
+            <button
+              type="button"
+              name="neutral"
+              className={css.neutral_btn}
+              onClick={this.handleUpdate}
+            >
+              Neutral
+            </button>
+          </div>
+          <div className={css.btn_vertical}>
+            <h3 className={css.number}>{counterBad}</h3>
+            <button
+              type="button"
+              name="bad"
+              className={css.bad_btn}
+              onClick={this.handleUpdate}
+            >
+              Bad
+            </button>
+          </div>
+        </div>
+        <h2>Statistics</h2>
         <Statistics
           counterGood={counterGood}
           counterNeutral={counterNeutral}
